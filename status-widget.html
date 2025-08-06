@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Status Display</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 2em;
+    }
+    .status {
+      font-size: 3em;
+      font-weight: bold;
+      color: white;
+      padding: 1em 2em;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    .on {
+      background-color: green;
+    }
+    .off {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Sensor Status</h2>
+  <div id="statusBox" class="status">Loading...</div>
+
+  <script>
+    // 値を動的に切り替えるテスト用：ここをTagoIOのiframeで置き換える場合はデータ送信側で動的に生成
+    const status = 1; // ← ここを1または0で切り替えてテスト
+
+    const statusBox = document.getElementById("statusBox");
+    if (status === 1) {
+      statusBox.textContent = "ON";
+      statusBox.classList.add("on");
+    } else {
+      statusBox.textContent = "OFF";
+      statusBox.classList.add("off");
+    }
+  </script>
+</body>
+</html>
