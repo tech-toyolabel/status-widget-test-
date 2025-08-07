@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Status Display</title>
+  <title>Status Widget - 2 Sensors</title>
   <style>
     body {
       font-family: sans-serif;
@@ -12,12 +12,14 @@
       padding: 2em;
     }
     .status {
-      font-size: 3em;
+      font-size: 2em;
       font-weight: bold;
       color: white;
       padding: 1em 2em;
       border-radius: 12px;
       display: inline-block;
+      margin: 1em;
+      min-width: 160px;
     }
     .on {
       background-color: green;
@@ -29,20 +31,27 @@
 </head>
 <body>
   <h2>Sensor Status</h2>
-  <div id="statusBox" class="status">Loading...</div>
+
+  <div id="sensor1" class="status">Sensor1: Loading...</div>
+  <div id="sensor2" class="status">Sensor2: Loading...</div>
 
   <script>
-    // 値を動的に切り替えるテスト用：ここをTagoIOのiframeで置き換える場合はデータ送信側で動的に生成
-    const status = 1; // ← ここを1または0で切り替えてテスト
+    // URLパラメータからセンサーの状態を取得
+    const params = new URLSearchParams(window.location.search);
 
-    const statusBox = document.getElementById("statusBox");
-    if (status === 1) {
-      statusBox.textContent = "ON";
-      statusBox.classList.add("on");
-    } else {
-      statusBox.textContent = "OFF";
-      statusBox.classList.add("off");
-    }
+    const sensor1Status = parseInt(params.get("sensor1") || "0");
+    const sensor2Status = parseInt(params.get("sensor2") || "0");
+
+    const sensor1Div = document.getElementById("sensor1");
+    const sensor2Div = document.getElementById("sensor2");
+
+    // Sensor 1 表示更新
+    sensor1Div.textContent = "Sensor1: " + (sensor1Status === 1 ? "ON" : "OFF");
+    sensor1Div.classList.add(sensor1Status === 1 ? "on" : "off");
+
+    // Sensor 2 表示更新
+    sensor2Div.textContent = "Sensor2: " + (sensor2Status === 1 ? "ON" : "OFF");
+    sensor2Div.classList.add(sensor2Status === 1 ? "on" : "off");
   </script>
 </body>
 </html>
