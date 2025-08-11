@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Status Widget Test</title>
+</head>
+<body>
+<h1>Status Test</h1>
+<div id="output">Loading...</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const s1 = params.get("sensor1");
+  const s2 = params.get("sensor2");
+
+  document.getElementById("output").textContent =
+    `Sensor1=${s1}, Sensor2=${s2}`;
+
+  console.log("Sensor1:", s1);
+  console.log("Sensor2:", s2);
+</script>
+</body>
+</html>
